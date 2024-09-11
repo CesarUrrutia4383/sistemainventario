@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "express": "^4.20.0",
     "mongoose": "^8.6.1"
-  }
+  },
+  "name": "sistema-inventario",
+  "version": "1.0.0",
+  "description": "Proyecto de desarrollo de la unidad",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cesar",
+  "license": "ISC"
 }
