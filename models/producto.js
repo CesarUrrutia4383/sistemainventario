@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const inventarioSchema = new mongoose.Schema({
+const productoSchema = new mongoose.Schema({
+    _id: {type: Number,required: true},
     nombre_producto: {type: String,required: true},
     descripcion: {type: String,required: true},
     precio_unitario: {type: String,required: true},
@@ -8,4 +9,4 @@ const inventarioSchema = new mongoose.Schema({
     id_proveedor: {type: Number,required: true},
 })
 
-module.exports= mongoose.model('Inventario',inventarioSchema);
+module.exports= mongoose.model('Productos',productoSchema);
