@@ -5,43 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalles del Producto</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .product-card {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 20px;
-            max-width: 400px;
-            margin: 20px auto;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .product-card h2 {
-            margin: 0 0 10px;
-        }
-        .product-card p {
-            margin: 5px 0;
-        }
-        .back-button {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 15px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 3px;
-        }
-        .back-button:hover {
-            background-color: #0056b3;
-        }
-    </style>
 </head>
 <body>
     <div class="product-card">
         <h2><%= producto.nombre_producto %></h2>
-        <p><strong>Descripción:</strong> <%= producto.descripcion %></p>
-        <p><strong>Precio Unitario:</strong> $<%= producto.precio_unitario %></p>
-        <p><strong>ID Categoría:</strong> <%= producto.id_categoria %></p>
-        <p><strong>ID Proveedor:</strong> <%= producto.id_proveedor %></p>
-        <a href="/productos" class="back-button">Volver a la lista</a>
+        <p class="description"><%= producto.descripcion %></p>
+        <p class="price">$<%= producto.precio_unitario %></p>
+        <p class="category">Categoría ID: <%= producto.id_categoria %></p>
+        <p class="supplier">Proveedor ID: <%= producto.id_proveedor %></p>
+        <a href="/productos" class="back-button">Regresar a la lista de productos</a>
     </div>
 </body>
 </html>

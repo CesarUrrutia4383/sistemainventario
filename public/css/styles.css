@@ -1,17 +1,19 @@
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #2b2b2b;
     margin: 0;
-    padding: 0;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     min-height: 100vh;
+    color: #333;
 }
 
 h1 {
-    color: #333;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
@@ -25,11 +27,13 @@ a:hover {
 }
 
 table {
-    width: 80%;
+    width: 90%;
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 th, td {
@@ -63,17 +67,19 @@ button, .back-button {
 }
 
 button:hover, .back-button:hover {
-    background-color: #0056b3;
+    background-color: #58a5f8;
 }
 
+/* Estilo de la tarjeta del producto individual */
 .product-card {
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
-    max-width: 400px;
+    max-width: 500px;
     background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     text-align: center;
+    margin-top: 20px;
 }
 
 .product-card h2 {
@@ -83,8 +89,31 @@ button:hover, .back-button:hover {
 
 .product-card p {
     margin: 8px 0;
+    font-size: 16px;
 }
 
 .product-card p strong {
     color: #333;
+}
+
+.product-card .price {
+    font-size: 20px;
+    color: #28a745;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.product-card .category, .product-card .supplier {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.product-card .description {
+    font-style: italic;
+    color: #666;
+    margin: 10px 0;
 }
