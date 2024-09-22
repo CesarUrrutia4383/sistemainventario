@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Productos</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <title>Lista de Productos</title>
 </head>
 <body>
     <h1>Lista de Productos</h1>
@@ -17,6 +17,7 @@
                 <th>Precio Unitario</th>
                 <th>ID Categoría</th>
                 <th>ID Proveedor</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,7 @@
                     <td><%= producto.precio_unitario %></td>
                     <td><%= producto.id_categoria %></td>
                     <td><%= producto.id_proveedor %></td>
+                    <td><a href="/productos/<%= producto._id %>">Ver Detalles</a></td> <!-- Enlace correcto -->
                 </tr>
             <% }); %>
         </tbody>

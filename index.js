@@ -1,17 +1,15 @@
 const express = require ('express');
 const app= express();
 require('./config/db');
-const productoController = require('./controllers/productoController');
+const productoRoutes = require('./routes/producto');
 
 
-// Configurar EJS como motor de plantillas
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// Servir archivos estáticos como CSS
 app.use(express.static('public'));
 
-app.use('/',productoController);
+app.use('/',productoRoutes);
 
 app.listen('3000',function(){
     console.log(' 3000')

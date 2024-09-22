@@ -11,5 +11,4 @@ router.get('/productos',async(req,res)=>{
         res.status(500).json({error:'Error del Servidor'});
     }
 });
-
 module.exports =router;
