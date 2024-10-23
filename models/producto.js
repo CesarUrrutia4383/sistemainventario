@@ -7,6 +7,6 @@ const productoSchema = new mongoose.Schema({
     precio_unitario: {type: String,required: true},
     id_categoria: {type: Number,required: true},
     id_proveedor: {type: Number,required: true},
-})
+}, { versionKey: false }); // <--- Esto desactiva el campo __v
 
 module.exports= mongoose.model('Productos',productoSchema);

@@ -2,7 +2,8 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.20.0",
-    "mongoose": "^8.6.1"
+    "mongoose": "^8.6.1",
+    "sistema-inventario": "file:"
   },
   "name": "sistema-inventario",
   "version": "1.0.0",
