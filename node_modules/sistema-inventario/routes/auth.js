@@ -34,6 +34,29 @@ router.post('/logout', (req, res) => {
     req.app.locals.usuarioId = null;  // Elimina el ID del usuario
     res.redirect('/auth/login');  // Redirige al login
 });
+// GET: Página de registro
+router.get('/register', (req, res) => {
+    res.render('register');  // Renderiza la página de registro
+});
+// POST: Registrar un nuevo usuario
+router.post('/register', async (req, res) => {
+    const { usuario, contrasena } = req.body;
+
+    try {
+        const usuarioExistente = await Usuario.findOne({ usuario });
+
+        if (usuarioExistente) {
+            return res.status(400).send('El usuario ya existe');
+        }
+
+        const nuevoUsuario = new Usuario({ usuario, contrasena });
+        await nuevoUsuario.save();
+
+        res.redirect('/auth/login');  // Redirige a la página de login después de registrar
+    } catch (error) {
+        res.status(500).send('Error al registrar el usuario: ' + error.message);
+    }
+});
 
 
 module.exports = router;
