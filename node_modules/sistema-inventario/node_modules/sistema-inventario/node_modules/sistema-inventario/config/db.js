@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const MONGO_URI = 'mongodb://localhost:27017/sisinv';
+const MONGO_URI = 'mongodb+srv://dbadmin:admin@cluster0.uukdi.mongodb.net/sisinv';
 
 mongoose.connect(MONGO_URI)
 .then(()=>{

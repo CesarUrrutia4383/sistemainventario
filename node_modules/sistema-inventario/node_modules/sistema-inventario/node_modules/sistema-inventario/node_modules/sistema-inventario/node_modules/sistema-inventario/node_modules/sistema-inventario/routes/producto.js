@@ -2,8 +2,16 @@ const express = require('express');
 const router = express.Router();
 const Producto = require('../models/producto');
 
-// GET: Obtener todos los productos
-router.get('/productos', async (req, res) => {
+// Middleware para verificar sesión
+const verificarSesion = (req, res, next) => {
+    if (!req.app.locals.isAuthenticated) {
+        return res.redirect('/auth/login');  // Redirige si no está autenticado
+    }
+    next();
+};
+
+// GET: Obtener todos los productos (protegido)
+router.get('/', verificarSesion, async (req, res) => {
     try {
         const productos = await Producto.find();
         res.render('producto', { productos });
@@ -13,18 +21,18 @@ router.get('/productos', async (req, res) => {
 });
 
 // GET: Obtener un solo producto por ID
-router.get('/productos/:id', async (req, res) => {
+router.get('/:id', verificarSesion, async (req, res) => {
     try {
         const producto = await Producto.findById(req.params.id);
         if (!producto) return res.status(404).send('Producto no encontrado');
-        res.render('indv', { producto });  // Asegúrate de que `producto` esté siendo pasado a la vista
+        res.render('indv', { producto });
     } catch (error) {
         res.status(500).send('Error al obtener el producto: ' + error.message);
     }
 });
 
 // POST: Crear un nuevo producto
-router.post('/productos', async (req, res) => {
+router.post('/', verificarSesion, async (req, res) => {
     try {
         const nuevoProducto = new Producto(req.body);
         await nuevoProducto.save();
@@ -35,22 +43,22 @@ router.post('/productos', async (req, res) => {
 });
 
 // PUT: Actualizar un producto
-router.put('/productos/:id', async (req, res) => {
+router.put('/:id', verificarSesion, async (req, res) => {
     try {
         const productoActualizado = await Producto.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!productoActualizado) return res.status(404).send('Producto no encontrado');
-        res.redirect('/productos'); // Redirige a la lista de productos después de la actualización
+        res.redirect('/productos');
     } catch (error) {
         res.status(500).send('Error al actualizar el producto: ' + error.message);
     }
 });
 
 // DELETE: Eliminar un producto
-router.delete('/productos/:id', async (req, res) => {
+router.delete('/:id', verificarSesion, async (req, res) => {
     try {
         const productoEliminado = await Producto.findByIdAndDelete(req.params.id);
         if (!productoEliminado) return res.status(404).send('Producto no encontrado');
-        res.redirect('/productos'); // Redirige a la lista de productos después de la eliminación
+        res.redirect('/productos');
     } catch (error) {
         res.status(500).send('Error al eliminar el producto: ' + error.message);
     }

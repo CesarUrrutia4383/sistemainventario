@@ -2,7 +2,11 @@ const express = require('express');
 const app = express();
 require('./config/db');
 
-// Middleware para interpretar formularios y JSON
+// Variable en memoria para el estado de autenticación
+app.locals.isAuthenticated = false;
+app.locals.usuarioId = null;  // Agregar un campo para almacenar el ID del usuario autenticado
+
+// Interpretar formularios y JSON
 app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
     if (req.query._method) {
@@ -11,16 +15,31 @@ app.use((req, res, next) => {
     }
     next();
 });
-app.use(express.json());  // Necesario para manejar las peticiones PUT y DELETE
-
-
+app.use(express.json());
 
 // Establecer EJS como el motor de plantillas
 app.set('view engine', 'ejs');
 
-// Rutas de productos
+// Middleware para verificar autenticación
+function verificarAutenticacion(req, res, next) {
+    if (!req.app.locals.isAuthenticated) {
+        return res.redirect('/auth/login'); // Redirige al login si no está autenticado
+    }
+    next(); // Permite el acceso si está autenticado
+}
+
+// Rutas de autenticación
+const authRoutes = require('./routes/auth');
+app.use('/auth', authRoutes);
+
+// Redirigir la ruta raíz a la página de login
+app.get('/', (req, res) => {
+    res.redirect('/auth/login');
+});
+
+// Rutas de productos (requieren autenticación)
 const productoRoutes = require('./routes/producto');
-app.use('/', productoRoutes);
+app.use('/productos', verificarAutenticacion, productoRoutes);
 
 // Configurar servidor
 app.listen(3000, () => {
